@@ -1,0 +1,19 @@
+.layout{
+    display: grid;
+    grid-template-columns: var(--width);
+    grid-template-rows: var(--nav-height) minmax(var(--min-height), auto) var(--footer-height);
+    grid-template-areas: "navbar"
+                         "content"
+                         "footer";
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        width: var(--scroll-width);
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--t-sec-color);
+    }
+}

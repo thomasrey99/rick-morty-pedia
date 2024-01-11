@@ -1,0 +1,7 @@
+:root{
+    --scroll-width:5px;
+    --nav-height:50vh;
+    --min-height:100vh;
+    --footer-height:30vh;
+    --width:calc(100vw-var(var(--scroll-width)))
+}

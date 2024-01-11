@@ -1,0 +1,7 @@
+@use "./base/reset";
+@use "./base/sizes";
+@use "./base/colors";
+@use "./base/layout";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
