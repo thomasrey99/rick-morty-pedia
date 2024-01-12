@@ -1,0 +1,29 @@
+.paginateCont{
+    width:320px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 3rem;
+    color: var(--p-color);
+    .page{
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        .span{
+            font-size: 0.8rem;
+            color: var(--subt-color);
+        }
+    }
+    .button{
+        color: var(--border-orange);
+        font-weight: bold;
+        font-size: 1.5rem;
+        &:disabled{
+            color: var(--card-background);
+        }
+        cursor: pointer;
+    }
+}   

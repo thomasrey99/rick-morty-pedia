@@ -10,9 +10,13 @@ export async function GET(req) {
 
     const gender=req.nextUrl.searchParams.get('gender') || ''
 
-    const species=req.nextUrl.searchParams.get('origin') || ''
+    const species=req.nextUrl.searchParams.get('species') || ''
 
-    const data=await getCharacters(name, status, gender, species)
+    const page=req.nextUrl.searchParams.get('page') || ''
+
+    const data=await getCharacters(page, name, status, gender, species)
+
+    console.log(species)
 
     return NextResponse.json(data)
 

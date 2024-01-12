@@ -1,0 +1,8 @@
+.header{
+    grid-area: header;
+    display: grid;
+    grid-column: var(--width);
+    grid-template-rows: 20% 80%;
+    grid-template-areas: "navbar"
+                         "title";
+}
