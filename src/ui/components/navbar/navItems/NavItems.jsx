@@ -6,15 +6,15 @@ const NavItems = () => {
   const items=[
     {
         name:"Characters",
-        path:"/characters"
+        path:"/rick&morty/characters"
     },
     {
-        name:"Locations",
-        path:"/locations"
+      name:"Episodes",
+      path:"/rick&morty/episodes"
     },
     {
-        name:"Episodes",
-        path:"/episodes"
+      name:"Locations",
+      path:"/rick&morty/locations"
     }
   ]
 

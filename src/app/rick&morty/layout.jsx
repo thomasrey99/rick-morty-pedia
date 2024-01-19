@@ -5,7 +5,7 @@ export default function RootLayout({ children }) {
   return (
    <main className="layout">
     <Header/>
-    {children}
+      {children}
     <Footer/>
    </main>
   )
