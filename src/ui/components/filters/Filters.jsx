@@ -5,22 +5,22 @@ import style from "@/ui/styles/components/filters/filters.module.scss"
 
 const Filters = () => {
 
-  const {setSearch, search}=useContext(CharactersContext)
+  const {setFilter, filter}=useContext(CharactersContext)
 
   const onChangeFilter=(event)=>{
 
     const {name, value}=event.target
 
-    setSearch({
-        ...search,
+    setFilter({
+        ...filter,
         [name]:value
     })
 
   }
 
   const clearFilters=()=>{
-    setSearch({
-        ...search,
+    setFilter({
+        ...filter,
         name:"",
         gender:"",
         status:"",
@@ -56,7 +56,7 @@ const Filters = () => {
     <aside className={style.filtersCont}>
 
         <div className={style.filters}>
-            <select className={style.select} name="status" onChange={onChangeFilter} value={search.status}>
+            <select className={style.select} name="status" onChange={onChangeFilter} value={filter.status}>
                 <option value=""  className={style.option}>Select an status</option>
                 {
                     status.map((stat, i)=>(
@@ -65,7 +65,7 @@ const Filters = () => {
                 }
             </select>
 
-            <select className={style.select} name="gender" onChange={onChangeFilter} value={search.gender}>
+            <select className={style.select} name="gender" onChange={onChangeFilter} value={filter.gender}>
                 <option value=""  className={style.option}>Select an Gender</option>
                 {
                     gender.map((gen, i)=>(
@@ -74,7 +74,7 @@ const Filters = () => {
                 }
             </select>
 
-            <select className={style.select} name="species" onChange={onChangeFilter} value={search.species}>
+            <select className={style.select} name="species" onChange={onChangeFilter} value={filter.species}>
                 <option value=""  className={style.option}>Select an Specie</option>
                 {
                     species.map((spec, i)=>(

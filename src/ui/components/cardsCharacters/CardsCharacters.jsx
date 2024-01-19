@@ -6,13 +6,15 @@ import Card from "./card/Card"
 
 const CardsCharacters = () => {
 
-  const { characters }=useContext(CharactersContext)
+  const { characters, state }=useContext(CharactersContext)
+
+  console.log(state)
 
   return (
     <section className={style.cardsCont}>
 
       {
-        characters?.map(({id, name, location, image, gender, status, species})=>(
+        state.characters?.map(({id, name, location, image, gender, status, species})=>(
           <Card key={id} name={name} location={location} image={image} gender={gender} status={status} species={species}/>
         ))
       }

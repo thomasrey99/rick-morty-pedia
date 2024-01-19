@@ -1,26 +1,17 @@
 "use client"
-import axios from "axios";
-import { useEffect, useState, useCallback} from "react";
+import { useEffect, useState, useCallback, useReducer} from "react";
 import CharactersContext from "./CharactersContext";
+import { initialState, reducer } from "./reducer/reducer";
+import { setCharacters } from "./actions/actions";
+import { getCharacters } from "@/utils/getCharacters";
 
-const getCharacters=async(page, name, gender, status, species)=>{
-
-    const data=(await axios(`http://localhost:3000/api/characters?page=${page}&name=${name}&gender=${gender}&status=${status}&species=${species}`)).data
-
-    return data
-
-}
 
 const CharactersProvider=({children})=>{
     
+    const [state, dispatch]=useReducer(reducer, initialState)
 
-    const [characters, setCharacters]=useState([])
-
-    const [search, setSearch]=useState({
-        pages:"",
+    const [filter, setFilter]=useState({
         current_page:1,
-        count:"",
-        isLoading:false,
         name:"",
         gender:"",
         status:"",
@@ -29,17 +20,17 @@ const CharactersProvider=({children})=>{
 
     const changePage=(action)=>{
 
-        if(action==="next"&&search.current_page<search.pages){
-            setSearch({
-                ...search,
-                current_page:search.current_page + 1
+        if(action==="next"&&filter.current_page<state.pages){
+            setFilter({
+                ...filter,
+                current_page:filter.current_page + 1
             })
         }
 
-        if(action==="prev"&&search.current_page>1){
-            setSearch({
-                ...search,
-                current_page:search.current_page - 1
+        if(action==="prev"&&filter.current_page>1){
+            setFilter({
+                ...filter,
+                current_page:filter.current_page - 1
             })
         }
 
@@ -48,38 +39,21 @@ const CharactersProvider=({children})=>{
     
 
     const memoizedGetCharacters = useCallback(async () => {
-
-        setSearch({
-            ...search,
-            isLoading:true
-        })
-
-        const data = await getCharacters(search.current_page, search.name, search.gender, search.status, search.species);
-        setCharacters(data.results);
-        setSearch({
-          ...search,
-          count: data.info?.count ? data.info.count:"",
-          pages: data.info?.pages ? data.info.pages:"",
-          isLoading:false
-        });
-
-      }, [search.current_page, search.name, search.gender, search.status, search.species]);
-    
-      useEffect(() => {
-        memoizedGetCharacters();
-      }, [memoizedGetCharacters]);
+        const data = await getCharacters(filter.current_page, filter.name, filter.gender, filter.status, filter.species);
+        dispatch(setCharacters(data))
+      }, [filter]);
 
       useEffect(()=>{
-        setSearch({
-            ...search,
-            current_page:1
-        })
-      },[search.name, search.gender, search.status, search.species])
+
+        memoizedGetCharacters()
+        
+      }, [memoizedGetCharacters])
+
     return(
         <CharactersContext.Provider value={{
-            characters,
-            search,
-            setSearch,
+            state,
+            filter,
+            setFilter,
             changePage
         }}>
             {children}

@@ -7,12 +7,13 @@ const Searchbar = () => {
 
   const [name, setName]=useState("")
 
-  const {setSearch, search}=useContext(CharactersContext)
+  const {setFilter, filter}=useContext(CharactersContext)
 
   const SearchByName=()=>{
-    setSearch({
-        ...search,
-        name:name
+    setFilter({
+        ...filter,
+        name:name,
+        current_page:1
     })
   }
 

@@ -1,0 +1,4 @@
+export const ActionTypes={
+    GET_CHARACTERS:"GET_CHARACTERS",
+    CHANGE_PAGE:"CHANGE_PAGE"
+}
